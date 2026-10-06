@@ -1,0 +1,6 @@
+# Photos are already-compressed JPEGs/SVGs: delta compression only wastes CPU
+# during pack and push. The SVG placeholders carry a .jpg name but are tiny.
+*.jpg -delta binary
+*.jpeg -delta binary
+*.png -delta binary
+*.svg -delta binary
