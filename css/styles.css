@@ -30,6 +30,13 @@ body {
 }
 h1, h2, h3, h4 { font-family: var(--font-head); }
 a { color: var(--tp-link); text-decoration: none; }
+/* Links inside running prose get an underline so they are distinguishable
+   without relying on color alone (WCAG 1.4.1). */
+p a, .about-teaser a, .info-note a, .legal-copy a, .auth-alt a, .publicity a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
 a:hover { text-decoration: underline; }
 button { font-family: inherit; cursor: pointer; }
 img { max-width: 100%; display: block; }
@@ -612,11 +619,11 @@ img { max-width: 100%; display: block; }
   top: 4px;
   left: 8px;
   font-size: 10px;
-  color: #aaa;
+  color: #595959;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
-.banner-ad-container .ad-ph { font-size: 12px; color: #bbb; }
+.banner-ad-container .ad-ph { font-size: 12px; color: #595959; }
 
 /* ——— Listing cards (reference layout) ——— */
 .list-listing-card-wrapper {
@@ -817,7 +824,17 @@ img { max-width: 100%; display: block; }
   z-index: 5;
 }
 .slick-dots ul { margin: 0; padding: 0; list-style: none; display: flex; gap: 4px; }
-.slick-dots li { cursor: pointer; line-height: 0; }
+.slick-dots li {
+  cursor: pointer;
+  line-height: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  min-height: 24px;
+}
+.slick-dots li div { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
+.slick-dots li i { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
 
 /* Price */
 .price-contain { height: 29px; display: flex; align-items: center; }
@@ -930,7 +947,7 @@ img { max-width: 100%; display: block; }
   font-size: 13px;
   color: #333;
 }
-.dealer-data .phone-link { color: var(--tp-blue); font-weight: 700; font-size: 15px; }
+.dealer-data .phone-link { color: var(--tp-blue); font-weight: 700; font-size: 15px; min-height: 24px; display: inline-flex; align-items: center; }
 .seller { font-size: 12px; color: #333; }
 .seller span { color: var(--tp-gray); }
 .seller a { color: var(--tp-blue); font-weight: 700; }
@@ -1157,7 +1174,7 @@ img { max-width: 100%; display: block; }
 }
 .legal-bar a { color: #999; display: inline-flex; align-items: center; gap: 4px; }
 .legal-bar img { height: 14px; }
-.copy { width: 100%; color: #777; margin-top: 8px; }
+.copy { width: 100%; color: #999; margin-top: 8px; }
 
 /* ——— Mobile sticky tools ——— */
 .mobile-tools {
