@@ -9,7 +9,14 @@
     const data = window.TP_DATA;
     const auth = window.TP_AUTH;
     const domReady = document.readyState !== "loading";
-    if (!data || !auth || !domReady) {
+    /* When js/api.js is present it probes the backend and may replace
+     * window.TP_DATA with live data; wait for that decision — success or
+     * fallback — so the API wins the race when it is reachable. The module
+     * always settles (its own fetch timeout guarantees it), so this never
+     * stalls the boot. */
+    const api = window.TP_API;
+    const apiSettled = !api || api.settled;
+    if (!data || !auth || !domReady || !apiSettled) {
       if (!domReady) document.addEventListener("DOMContentLoaded", boot);
       const iv = window.setInterval(function () {
         boot();
@@ -22,7 +29,7 @@
           root.innerHTML =
             '<div class="data-error" role="alert"><strong>Site scripts did not load</strong> — js/data.js or js/auth.js did not run. Refresh to retry.</div>';
       };
-      window.setTimeout(dropError, 5000);
+      window.setTimeout(dropError, api ? 9000 : 5000);
       return;
     }
     started = true;
@@ -1745,7 +1752,7 @@
           : "";
       return `<div class="no-results" role="status">
         <h2>No listings found${where}</h2>
-        <p>Try removing some filters, or <a data-route href="/">browse all trucks</a>.</p>
+        <p>Try removing some filters, or <a data-route href="/truckpaper/">browse all trucks</a>.</p>
         ${savvy}
       </div>`;
     }
@@ -1890,7 +1897,7 @@
           <h2>Your watch list is empty</h2>
           <p>Tap the heart on any truck card (or on a listing's photo) to save it here. Saved items are stored in
           this browser until a member account backend is connected.</p>
-          <a class="template-branded-button view-listing-details-link" data-route href="/">Browse Trucks</a>
+          <a class="template-branded-button view-listing-details-link" data-route href="/truckpaper/">Browse Trucks</a>
         </div>`;
       }
       return `<div class="info-page">
@@ -2041,7 +2048,7 @@
         </ol>
         <div class="info-cta-row">
           <a class="template-branded-button view-listing-details-link" href="https://www.truckpaper.com/listinginput" target="_blank" rel="noopener">Start A Listing</a>
-          <a class="template-branded-button-view" data-route href="/dealer-portal">Dealer Portal</a>
+          <a class="template-branded-button-view" data-route href="/truckpaper/dealer-portal">Dealer Portal</a>
         </div>
         <p class="info-note">Questions? <a href="mailto:c9919145@gmail.com">Email the demo support inbox</a>.</p>
       </div>`;
@@ -2060,7 +2067,7 @@
         <div class="info-cta-row">
           <a class="template-branded-button view-listing-details-link" href="https://www.gocurrency.com/" target="_blank" rel="noopener">Apply for Financing</a>
         </div>
-        <p class="info-note">State licenses and disclosures: see the <a data-route href="/legal#licenses">Legal Notices</a> page.</p>
+        <p class="info-note">State licenses and disclosures: see the <a data-route href="/truckpaper/legal#licenses">Legal Notices</a> page.</p>
       </div>`;
     }
 
@@ -2111,18 +2118,9 @@
     }
 
     function dealerPortalPageHtml() {
-      return `<div class="info-page">
+      return `<div class="info-page" data-seller-portal>
         <h2>Dealer Portal</h2>
-        <p>The Dealer Portal is where Sandhills dealers manage their TruckPaper.com presence — listings, advertising,
-        hosted websites, and market reports.</p>
-        <ul class="info-list">
-          <li><a data-route href="/sell">List new equipment</a></li>
-          <li><a data-route href="/hosted-websites">Get a hosted dealer website</a></li>
-          <li><a data-route href="/advertising">Run targeted advertising</a></li>
-          <li><a data-route href="/market-reports">Pull market reports</a></li>
-        </ul>
-        <p class="info-note">Not a dealer yet? Talk to us at <strong>800-247-4868</strong> or <a href="mailto:c9919145@gmail.com">email</a>.
-        A full dealer-login backend is on the roadmap; this demo manages portal access locally.</p>
+        <p class="info-note">Loading the Dealer Portal…</p>
       </div>`;
     }
 
@@ -2131,8 +2129,8 @@
         <h2>Subscriptions</h2>
         <p>Subscribe to the TruckPaper.com print magazine and email product updates (currently served as a demo newsletter until a mailing platform is connected).</p>
         <div class="info-cta-row">
-          <a class="template-branded-button-view" data-route href="/email-signup">Email Signup</a>
-          <a class="template-branded-button-view" data-route href="/alerts">Set Up Alerts</a>
+          <a class="template-branded-button-view" data-route href="/truckpaper/email-signup">Email Signup</a>
+          <a class="template-branded-button-view" data-route href="/truckpaper/alerts">Set Up Alerts</a>
         </div>
         <p class="info-note">Questions? <a href="mailto:c9919145@gmail.com">Contact Us</a></p>
       </div>`;
@@ -2270,6 +2268,9 @@
       root.innerHTML = html;
       bindStaticPage(root, st);
       setupInteractions();
+      if (st.view === "dealer-portal" && window.TP_SELLER_PORTAL) {
+        window.TP_SELLER_PORTAL.mount(root.querySelector("[data-seller-portal]"));
+      }
       if (window.location.hash) {
         const target = document.getElementById(window.location.hash.slice(1));
         if (target) {
@@ -2394,7 +2395,7 @@
           root.innerHTML = `<div class="not-found" role="alert">
             <h2>We could not find that listing.</h2>
             <p>The listing may have sold or the link is invalid.</p>
-            <p><a data-route href="/">Back to all trucks</a></p>
+            <p><a data-route href="/truckpaper/">Back to all trucks</a></p>
           </div>`;
         setupInteractions();
         return;
@@ -2459,7 +2460,7 @@
                 <a data-route class="view-listing-details-link template-branded-button" href="${esc(
                   R.urlFor({ category: L.category })
                 )}">View More ${esc(L.category)}</a>
-                <a data-route class="detail-back" href="/">‹ Back to results</a>
+                <a data-route class="detail-back" href="/truckpaper/">‹ Back to results</a>
                 <button type="button" class="template-branded-button-view detail-share" data-detail-listing-id="${L.id}">Share</button>
                 ${
                   L.location
@@ -2613,7 +2614,7 @@
           )}">Email Seller</a>
           <button type="button" role="menuitem" data-opt="watch">${watched ? "Remove from Watch List" : "Add to Watch List"}</button>
           <button type="button" role="menuitem" data-opt="share">Share This Listing</button>
-          <a role="menuitem" data-route href="/financing">Apply for Financing</a>`;
+          <a role="menuitem" data-route href="/truckpaper/financing">Apply for Financing</a>`;
         menu.addEventListener("click", (ev) => {
           const o = ev.target.closest("[data-opt]");
           if (o && o.dataset.opt === "watch") toggleWatch(Number(id), o);
@@ -3158,9 +3159,9 @@
         const menu = document.createElement("div");
         menu.className = "options-menu account-menu";
         menu.innerHTML = `
-          <a data-route href="/watch-list">My Watch List</a>
-          <a data-route href="/alerts">Email Alerts</a>
-          <a data-route href="/dealer-portal">Dealer Portal</a>
+          <a data-route href="/truckpaper/watch-list">My Watch List</a>
+          <a data-route href="/truckpaper/alerts">Email Alerts</a>
+          <a data-route href="/truckpaper/dealer-portal">Dealer Portal</a>
           <button type="button" data-opt="signout">Sign Out</button>`;
         bar.appendChild(menu);
         btn.setAttribute("aria-expanded", "true");
@@ -3297,10 +3298,10 @@
           <p class="auth-error" role="alert" aria-live="polite" hidden></p>
           <div class="auth-row">
             <label class="auth-check"><input type="checkbox" name="remember" ${remembered !== "" ? "checked" : ""} /> Remember me</label>
-            <a data-route href="/forgot-password">Forgot password?</a>
+            <a data-route href="/truckpaper/forgot-password">Forgot password?</a>
           </div>
           <button type="submit" class="auth-submit" data-loading="Signing in…">Sign In</button>
-          <p class="auth-alt">Don't have an account? <a data-route href="/register">Create one</a></p>
+          <p class="auth-alt">Don't have an account? <a data-route href="/truckpaper/register">Create one</a></p>
         </form>
       </div>`;
     }
@@ -3347,7 +3348,7 @@
           </div>
           <p class="auth-error" role="alert" aria-live="polite" hidden></p>
           <button type="submit" class="auth-submit" data-loading="Creating Account…">Create Account</button>
-          <p class="auth-alt">Already have an account? <a data-route href="/login">Sign in</a></p>
+          <p class="auth-alt">Already have an account? <a data-route href="/truckpaper/login">Sign in</a></p>
         </form>
       </div>`;
     }
@@ -3365,7 +3366,7 @@
           </div>
           <p class="auth-error" role="alert" aria-live="polite" hidden></p>
           <button type="submit" class="auth-submit" data-loading="Sending…">Send Reset Link</button>
-          <p class="auth-alt"><a data-route href="/login">‹ Back to Sign In</a></p>
+          <p class="auth-alt"><a data-route href="/truckpaper/login">‹ Back to Sign In</a></p>
         </form>
         <div class="auth-ok" role="status" aria-live="polite" hidden>
           If an account exists for that address, a password reset link is on its way.
@@ -3401,16 +3402,16 @@
                 </div>
                 <p class="auth-error" role="alert" aria-live="polite" hidden></p>
                 <button type="submit" class="auth-submit" data-loading="Saving…">Update Password</button>
-                <p class="auth-alt"><a data-route href="/login">‹ Back to Sign In</a></p>
+                <p class="auth-alt"><a data-route href="/truckpaper/login">‹ Back to Sign In</a></p>
               </form>
               <div class="auth-ok" role="status" aria-live="polite" hidden>
                 Your password has been updated. You can now sign in.
               </div>`
             : `<div class="auth-error" style="display:block">
                 This reset link is missing or invalid. Request a new one from the
-                <a data-route href="/forgot-password">forgot password</a> page.
+                <a data-route href="/truckpaper/forgot-password">forgot password</a> page.
               </div>
-              <p class="auth-alt"><a data-route href="/forgot-password">Request a new reset link</a></p>`
+              <p class="auth-alt"><a data-route href="/truckpaper/forgot-password">Request a new reset link</a></p>`
         }
       </div>`;
     }

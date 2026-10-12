@@ -18,7 +18,7 @@
  *     ~1.9 GB; they are cached lazily as they are viewed, with a bounded
  *     cache so the origin quota is never exhausted.
  */
-const VERSION = 'tp-v1';
+const VERSION = 'tp-v2';
 const SHELL_CACHE = `${VERSION}-shell`;
 const IMAGE_CACHE = `${VERSION}-img`;
 const RUNTIME_CACHE = `${VERSION}-rt`;
@@ -34,6 +34,8 @@ const SHELL = [
   '/truckpaper/js/app.js',
   '/truckpaper/js/router.js',
   '/truckpaper/js/auth.js',
+  '/truckpaper/js/api.js',
+  '/truckpaper/js/seller.js',
   '/truckpaper/js/config.js',
   '/truckpaper/manifest.webmanifest',
   '/truckpaper/assets/logo.svg',

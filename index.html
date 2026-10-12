@@ -426,16 +426,22 @@
       load("js/config.js", function () {
         load("js/router.js", function () {
           load("js/data.js", function () {
-            load("js/auth.js", function () {
-              load("js/app.js");
+            load("js/api.js", function () {
+              load("js/auth.js", function () {
+                load("js/seller.js", function () {
+                  load("js/app.js");
+                });
+              });
             });
           });
         });
       });
       function retry() {
         if (!window.TP_ROUTER) load("js/router.js");
-        if (!window.TP_DATA) load("js/data.js", function () { load("js/auth.js", function () { load("js/app.js"); }); });
-        else if (!window.TP_AUTH) load("js/auth.js", function () { load("js/app.js"); });
+        if (!window.TP_DATA) load("js/data.js", function () { load("js/api.js", function () { load("js/auth.js", function () { load("js/seller.js", function () { load("js/app.js"); }); }); }); });
+        else if (!window.TP_API) load("js/api.js", function () { load("js/auth.js", function () { load("js/seller.js", function () { load("js/app.js"); }); }); });
+        else if (!window.TP_AUTH) load("js/auth.js", function () { load("js/seller.js", function () { load("js/app.js"); }); });
+        else if (!window.TP_SELLER) load("js/seller.js", function () { load("js/app.js"); });
       }
       document.addEventListener("DOMContentLoaded", retry);
       window.addEventListener("load", retry);
