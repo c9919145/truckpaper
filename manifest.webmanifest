@@ -2,21 +2,21 @@
   "name": "TruckPaper — Used & New Trucks for Sale",
   "short_name": "TruckPaper",
   "description": "Browse new and used semi trucks, trailers and commercial equipment for sale.",
-  "start_url": "/?source=pwa",
-  "scope": "/",
+  "start_url": "/truckpaper/?source=pwa",
+  "scope": "/truckpaper/",
   "display": "standalone",
   "orientation": "any",
   "background_color": "#ffffff",
   "theme_color": "#12437c",
   "categories": ["shopping", "business"],
   "icons": [
-    { "src": "/assets/pwa/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "/assets/pwa/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "/assets/pwa/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    { "src": "/truckpaper/assets/pwa/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/truckpaper/assets/pwa/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/truckpaper/assets/pwa/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ],
   "shortcuts": [
-    { "name": "Search Trucks", "url": "/search" },
-    { "name": "Find Dealers", "url": "/dealers" },
-    { "name": "Watch List", "url": "/watch-list" }
+    { "name": "Search Trucks", "url": "/truckpaper/search" },
+    { "name": "Find Dealers", "url": "/truckpaper/dealers" },
+    { "name": "Watch List", "url": "/truckpaper/watch-list" }
   ]
 }

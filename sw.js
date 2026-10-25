@@ -28,20 +28,20 @@ const IMAGE_CACHE_LIMIT = 300;
 
 /** The app shell: everything needed to paint the site chrome offline. */
 const SHELL = [
-  '/',
-  '/index.html',
-  '/css/styles.css',
-  '/js/app.js',
-  '/js/router.js',
-  '/js/auth.js',
-  '/js/api.js',
-  '/js/seller.js',
-  '/js/config.js',
-  '/manifest.webmanifest',
-  '/assets/logo.svg',
-  '/assets/pwa/icon-192.png',
-  '/assets/pwa/icon-512.png',
-  '/assets/pwa/apple-touch-icon.png',
+  '/truckpaper/',
+  '/truckpaper/index.html',
+  '/truckpaper/css/styles.css',
+  '/truckpaper/js/app.js',
+  '/truckpaper/js/router.js',
+  '/truckpaper/js/auth.js',
+  '/truckpaper/js/api.js',
+  '/truckpaper/js/seller.js',
+  '/truckpaper/js/config.js',
+  '/truckpaper/manifest.webmanifest',
+  '/truckpaper/assets/logo.svg',
+  '/truckpaper/assets/pwa/icon-192.png',
+  '/truckpaper/assets/pwa/icon-512.png',
+  '/truckpaper/assets/pwa/apple-touch-icon.png',
 ];
 
 self.addEventListener('install', (event) => {
@@ -85,7 +85,7 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== self.location.origin) return;
 
   // Never touch the auth API.
-  if (url.pathname.startsWith('/api/') || url.pathname.startsWith('/admin/')) return;
+  if (url.pathname.startsWith('/truckpaper/api/') || url.pathname.startsWith('/truckpaper/admin/')) return;
 
   // Navigations: network first so routing and deploys are always live,
   // falling back to the cached shell when the network is unavailable.
@@ -95,14 +95,14 @@ self.addEventListener('fetch', (event) => {
         .then((res) => {
           if (res && res.ok) {
             const copy = res.clone();
-            caches.open(SHELL_CACHE).then((c) => c.put('/index.html', copy));
+            caches.open(SHELL_CACHE).then((c) => c.put('/truckpaper/index.html', copy));
           }
           return res;
         })
         .catch(() =>
           caches
-            .match('/index.html')
-            .then((hit) => hit || caches.match('/'))
+            .match('/truckpaper/index.html')
+            .then((hit) => hit || caches.match('/truckpaper/'))
             .then((hit) => hit || new Response('Offline', { status: 503 }))
         )
     );
@@ -110,7 +110,7 @@ self.addEventListener('fetch', (event) => {
   }
 
   // Listing data: network first, stale copy only if the network fails.
-  if (url.pathname === '/js/data.js') {
+  if (url.pathname === '/truckpaper/js/data.js') {
     event.respondWith(
       fetch(request)
         .then((res) => {
@@ -151,7 +151,7 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     fetch(request)
       .then((res) => {
-        if (res && res.ok && url.pathname.startsWith('/js/')) {
+        if (res && res.ok && url.pathname.startsWith('/truckpaper/js/')) {
           const copy = res.clone();
           caches.open(RUNTIME_CACHE).then((c) => c.put(request, copy));
         }
