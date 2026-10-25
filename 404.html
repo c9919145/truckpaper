@@ -7,11 +7,11 @@
   <meta property="og:site_name" content="TruckPaper" />
   <meta property="og:title" content="TruckPaper — Used &amp; New Trucks for Sale" />
   <meta property="og:description" content="Browse a wide selection of new and used Sleeper Trucks for sale near you at TruckPaper.com" />
-  <meta property="og:image" content="/truckpaper/assets/pwa/icon-512.png" />
+  <meta property="og:image" content="/assets/pwa/icon-512.png" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="TruckPaper — Used &amp; New Trucks for Sale" />
   <meta name="twitter:description" content="Browse a wide selection of new and used Sleeper Trucks for sale near you at TruckPaper.com" />
-  <meta name="twitter:image" content="/truckpaper/assets/pwa/icon-512.png" />
+  <meta name="twitter:image" content="/assets/pwa/icon-512.png" />
   <title>Sleeper Trucks For Sale - 13,652 Listings | TruckPaper.com</title>
   <meta name="description" content="Browse a wide selection of new and used Sleeper Trucks for sale near you at TruckPaper.com" />
   <meta name="theme-color" content="#12437c" media="(prefers-color-scheme: light)" />
@@ -29,7 +29,7 @@
   <link rel="icon" type="image/png" sizes="512x512" href="assets/pwa/icon-512.png" />
   <link rel="mask-icon" href="assets/logo.svg" color="#12437c" />
 
-  <base href="/truckpaper/" />
+  <base href="/" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"TruckPaper.com","url":"https://www.truckpaper.com","contactPoint":{"@type":"ContactPoint","telephone":"+1 913-489-7118","email":"c9919145@gmail.com","contactType":"customer service"}}</script>
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -42,7 +42,7 @@
        Registering after load keeps it off the critical path. */
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", function () {
-        navigator.serviceWorker.register("/truckpaper/sw.js").catch(function () {});
+        navigator.serviceWorker.register("/sw.js").catch(function () {});
       });
     }
   </script>
@@ -58,23 +58,23 @@
       <span id="account-bar" hidden>
         <button type="button" class="account-btn" aria-haspopup="true" aria-expanded="false">My Account <i class="fas fa-caret-down"></i></button><span class="sep">|</span>
       </span>
-      <a data-route href="/truckpaper/login" id="login-link">Login</a><span class="sep">|</span>
-      <a data-route href="/truckpaper/dealer-portal">Dealer Portal</a><span class="sep">|</span>
+      <a data-route href="/login" id="login-link">Login</a><span class="sep">|</span>
+      <a data-route href="/dealer-portal">Dealer Portal</a><span class="sep">|</span>
       <a href="https://vip.truckpaper.com" target="_blank" rel="noopener">VIP Portal</a><span class="sep">|</span>
-      <a data-route href="/truckpaper/register" id="register-link">Register</a><span class="sep">|</span>
-      <a data-route href="/truckpaper/advertising">Advertising</a><span class="sep">|</span>
+      <a data-route href="/register" id="register-link">Register</a><span class="sep">|</span>
+      <a data-route href="/advertising">Advertising</a><span class="sep">|</span>
       <a href="mailto:c9919145@gmail.com">Contact Us</a><span class="sep">|</span>
       <button type="button" class="lang-btn" aria-label="Language" aria-haspopup="true" aria-expanded="false">
         EN <img src="assets/flag.png" alt="" />
       </button>
       <span class="sep">|</span>
-      <a data-route href="/truckpaper/brands">Global Brands</a>
+      <a data-route href="/brands">Global Brands</a>
     </div>
   </div>
 
   <header class="site-header">
     <div class="header-main">
-      <a class="logo" data-route href="/truckpaper/" aria-label="TruckPaper Home">
+      <a class="logo" data-route href="/" aria-label="TruckPaper Home">
         <img src="assets/logo.svg" alt="TruckPaper" />
       </a>
       <div class="search-wrap" role="search">
@@ -94,8 +94,8 @@
         <button type="button" class="mobile-nav-btn" id="mobile-nav-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
           <i class="fas fa-bars"></i>
         </button>
-        <a data-route href="/truckpaper/sell">Sell Your Equipment</a>
-        <a class="get-financing" data-route href="/truckpaper/financing">
+        <a data-route href="/sell">Sell Your Equipment</a>
+        <a class="get-financing" data-route href="/financing">
           <img src="assets/currency-icon.png" alt="" />
           Get Financing
         </a>
@@ -113,25 +113,25 @@
       </button>
     </div>
     <div class="mobile-nav-body">
-      <a data-route href="/truckpaper/">Home</a>
-      <a data-route href="/truckpaper/dealers">Find Dealers</a>
-      <a data-route href="/truckpaper/trucks/day-cab-trucks">Trucks For Sale</a>
-      <a data-route href="/truckpaper/trucks/trailers">Trailers For Sale</a>
-      <a data-route href="/truckpaper/email-signup">Email Signup</a>
-      <a data-route href="/truckpaper/market-reports">Get Market Reports</a>
-      <a data-route href="/truckpaper/hosted-websites">Hosted Websites</a>
-      <a data-route href="/truckpaper/want-to-buy">Post A Free Want To Buy</a>
-      <a data-route href="/truckpaper/values">High/Low/Average Values</a>
-      <a data-route href="/truckpaper/brands">Global Brands</a>
-      <a data-route href="/truckpaper/financing">Get Financing</a>
-      <a data-route href="/truckpaper/sell">Sell Your Equipment</a>
-      <a data-route href="/truckpaper/advertising">Advertising</a>
-      <a data-route href="/truckpaper/watch-list">Watch List</a>
-      <a data-route href="/truckpaper/alerts">Alerts</a>
+      <a data-route href="/">Home</a>
+      <a data-route href="/dealers">Find Dealers</a>
+      <a data-route href="/trucks/day-cab-trucks">Trucks For Sale</a>
+      <a data-route href="/trucks/trailers">Trailers For Sale</a>
+      <a data-route href="/email-signup">Email Signup</a>
+      <a data-route href="/market-reports">Get Market Reports</a>
+      <a data-route href="/hosted-websites">Hosted Websites</a>
+      <a data-route href="/want-to-buy">Post A Free Want To Buy</a>
+      <a data-route href="/values">High/Low/Average Values</a>
+      <a data-route href="/brands">Global Brands</a>
+      <a data-route href="/financing">Get Financing</a>
+      <a data-route href="/sell">Sell Your Equipment</a>
+      <a data-route href="/advertising">Advertising</a>
+      <a data-route href="/watch-list">Watch List</a>
+      <a data-route href="/alerts">Alerts</a>
       <hr />
-      <a data-route href="/truckpaper/login" id="mobile-nav-login">Login</a>
-      <a data-route href="/truckpaper/register" id="mobile-nav-register">Register</a>
-      <a data-route href="/truckpaper/dealer-portal">Dealer Portal</a>
+      <a data-route href="/login" id="mobile-nav-login">Login</a>
+      <a data-route href="/register" id="mobile-nav-register">Register</a>
+      <a data-route href="/dealer-portal">Dealer Portal</a>
       <a href="https://vip.truckpaper.com" target="_blank" rel="noopener">VIP Portal</a>
       <a href="mailto:c9919145@gmail.com">Contact Us</a>
     </div>
@@ -143,11 +143,11 @@
       <button type="button" class="cat-categories-btn" aria-haspopup="true" aria-expanded="false" data-cat-panel="cat-panel">
         Categories <span class="caret"><i class="fas fa-caret-down"></i></span>
       </button>
-      <a data-route href="/truckpaper/dealers">Find Dealers</a>
-      <a data-route href="/truckpaper/email-signup">Email Signup</a>
-      <a data-route href="/truckpaper/market-reports">Get Market Reports</a>
-      <a data-route href="/truckpaper/hosted-websites">Hosted Websites</a>
-      <a data-route href="/truckpaper/want-to-buy">Post A Free Want To Buy</a>
+      <a data-route href="/dealers">Find Dealers</a>
+      <a data-route href="/email-signup">Email Signup</a>
+      <a data-route href="/market-reports">Get Market Reports</a>
+      <a data-route href="/hosted-websites">Hosted Websites</a>
+      <a data-route href="/want-to-buy">Post A Free Want To Buy</a>
       <button type="button" class="more-btn" aria-haspopup="true" aria-expanded="false">More <i class="fas fa-caret-down"></i></button>
     </div>
   </nav>
@@ -162,8 +162,8 @@
   <main class="page" id="main-content">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <div class="breadcrumb-links">
-        <a data-route href="/truckpaper/">FIND COMMERCIAL TRUCKS &amp; TRAILERS FOR SALE</a> &gt;
-        <a data-route href="/truckpaper/">TRUCKS FOR SALE</a> &gt;
+        <a data-route href="/">FIND COMMERCIAL TRUCKS &amp; TRAILERS FOR SALE</a> &gt;
+        <a data-route href="/">TRUCKS FOR SALE</a> &gt;
         SLEEPER TRUCKS
       </div>
       <div class="media-buttons">
@@ -177,7 +177,7 @@
         <h1>Sleeper Trucks For Sale</h1>
         <strong class="list-listings-count" id="results-count-top">1 - 28 of 13,652 Listings</strong>
       </div>
-      <a class="hla-btn" data-route href="/truckpaper/values"><i class="fas fa-long-arrow-alt-up"></i> <i class="fas fa-long-arrow-alt-down"></i> <span>High/Low/Average</span></a>
+      <a class="hla-btn" data-route href="/values"><i class="fas fa-long-arrow-alt-up"></i> <i class="fas fa-long-arrow-alt-down"></i> <span>High/Low/Average</span></a>
     </div>
 
     <div class="about-teaser">
@@ -278,11 +278,11 @@
 
     <div class="listing-control-bar" id="nav-control-bar">
       <div class="control-left">
-        <a class="bar-item vip" data-route href="/truckpaper/values">
+        <a class="bar-item vip" data-route href="/values">
           <img src="assets/vip.png" alt="Value Insight Portal" />
           <span>Values</span>
         </a>
-        <a class="bar-item" data-route href="/truckpaper/values">
+        <a class="bar-item" data-route href="/values">
           <i class="fas fa-long-arrow-alt-up"></i>
           <i class="fas fa-long-arrow-alt-down"></i>
           <span>Hi/Lo/Avg</span>
@@ -293,11 +293,11 @@
         <span>Filter</span>
       </a>
       <div class="control-right">
-        <a class="bar-item" data-route href="/truckpaper/watch-list">
+        <a class="bar-item" data-route href="/watch-list">
           <i class="fas fa-heart"></i>
           <span>Watch List</span>
         </a>
-        <a class="bar-item" data-route href="/truckpaper/alerts">
+        <a class="bar-item" data-route href="/alerts">
           <i class="fas fa-bell"></i>
           <span>Alerts</span>
         </a>
@@ -312,7 +312,7 @@
       <div class="about-grid">
         <div>
           <p>
-            Sleeper trucks, designed for long-haul trips, feature an extra compartment to the rear of the cab that is generally outfitted with a bunk, a refrigerator, storage space, and other amenities where the driver can relax and sleep through the night while on routes scheduled to last more than a day. Unlike <a data-route href="/truckpaper/trucks/day-cab-trucks">day cab trucks</a>, a sleeper cab gives drivers the flexibility to park the truck when their work day is over and eat and sleep in it, rather than mapping out roadside food and lodging along their route, as well as added security as the load isn’t left unattended for long periods of time.
+            Sleeper trucks, designed for long-haul trips, feature an extra compartment to the rear of the cab that is generally outfitted with a bunk, a refrigerator, storage space, and other amenities where the driver can relax and sleep through the night while on routes scheduled to last more than a day. Unlike <a data-route href="/trucks/day-cab-trucks">day cab trucks</a>, a sleeper cab gives drivers the flexibility to park the truck when their work day is over and eat and sleep in it, rather than mapping out roadside food and lodging along their route, as well as added security as the load isn’t left unattended for long periods of time.
           </p>
           <h3>Sleeper Cab Amenities</h3>
           <p>
@@ -321,22 +321,22 @@
           <h3>Find The Right Sleeper Truck</h3>
           <p>
             You’ll find a large selection of new and used sleeper trucks from major manufacturers such as
-            <a data-route href="/truckpaper/trucks/freightliner">Freightliner</a>,
-            <a data-route href="/truckpaper/trucks/international">International</a>,
-            <a data-route href="/truckpaper/trucks/kenworth">Kenworth</a>,
-            <a data-route href="/truckpaper/trucks/mack">Mack</a>,
-            <a data-route href="/truckpaper/trucks/peterbilt">Peterbilt</a>,
-            <a data-route href="/truckpaper/trucks/volvo">Volvo</a>, and
-            <a data-route href="/truckpaper/trucks/western-star">Western Star</a>
+            <a data-route href="/trucks/freightliner">Freightliner</a>,
+            <a data-route href="/trucks/international">International</a>,
+            <a data-route href="/trucks/kenworth">Kenworth</a>,
+            <a data-route href="/trucks/mack">Mack</a>,
+            <a data-route href="/trucks/peterbilt">Peterbilt</a>,
+            <a data-route href="/trucks/volvo">Volvo</a>, and
+            <a data-route href="/trucks/western-star">Western Star</a>
             for sale at TruckPaper.com.
           </p>
           <div class="search-by">
-            <a data-route href="/truckpaper/search">Search By Manufacturer</a>
-            <a data-route href="/truckpaper/search">Search By State</a>
-            <a data-route href="/truckpaper/search">Search By Specs</a>
+            <a data-route href="/search">Search By Manufacturer</a>
+            <a data-route href="/search">Search By State</a>
+            <a data-route href="/search">Search By Specs</a>
           </div>
           <p class="disclaimer">
-            *Monthly payment stated above assumes a secured commercial use loan transaction available for highly qualified commercial loan applicants. Actual loan payment amount and terms may vary. Consumer financing not available for consumers residing in Nevada. Additional state restrictions may apply. Equal opportunity lender. Click <a data-route href="/truckpaper/legal#licenses">here</a> for more state licenses and disclosures. NMLS ID: 1857954. VERMONT RESIDENTS: THIS IS A LOAN SOLICITATION ONLY. CurrencyFinance IS NOT THE LENDER. INFORMATION RECEIVED WILL BE SHARED WITH ONE OR MORE THIRD PARTIES IN CONNECTION WITH YOUR LOAN INQUIRY. THE LENDER MAY NOT BE SUBJECT TO ALL VERMONT LENDING LAWS. THE LENDER MAY BE SUBJECT TO FEDERAL LENDING LAWS. CALIFORNIA RESIDENTS: Financing provided or arranged by Express Tech-Financing, LLC dba Currency pursuant to California Finance Lender License #60DBO54873
+            *Monthly payment stated above assumes a secured commercial use loan transaction available for highly qualified commercial loan applicants. Actual loan payment amount and terms may vary. Consumer financing not available for consumers residing in Nevada. Additional state restrictions may apply. Equal opportunity lender. Click <a data-route href="/legal#licenses">here</a> for more state licenses and disclosures. NMLS ID: 1857954. VERMONT RESIDENTS: THIS IS A LOAN SOLICITATION ONLY. CurrencyFinance IS NOT THE LENDER. INFORMATION RECEIVED WILL BE SHARED WITH ONE OR MORE THIRD PARTIES IN CONNECTION WITH YOUR LOAN INQUIRY. THE LENDER MAY NOT BE SUBJECT TO ALL VERMONT LENDING LAWS. THE LENDER MAY BE SUBJECT TO FEDERAL LENDING LAWS. CALIFORNIA RESIDENTS: Financing provided or arranged by Express Tech-Financing, LLC dba Currency pursuant to California Finance Lender License #60DBO54873
           </p>
         </div>
         <figure class="about-img">
@@ -350,27 +350,27 @@
   <footer class="site-footer">
     <div class="footer-tools">
       <div class="footer-tools-inner">
-        <a data-route href="/truckpaper/values"><img src="assets/vip.png" alt="Value Insight Portal" /> Values</a>
-        <a data-route href="/truckpaper/values">Hi/Lo/Avg</a>
+        <a data-route href="/values"><img src="assets/vip.png" alt="Value Insight Portal" /> Values</a>
+        <a data-route href="/values">Hi/Lo/Avg</a>
         <a href="#" role="button" class="bar-filter">Filter</a>
-        <a data-route href="/truckpaper/watch-list">Watch List</a>
-        <a data-route href="/truckpaper/alerts">Alerts</a>
-        <a data-route href="/truckpaper/returns">Returns and Refunds</a>
+        <a data-route href="/watch-list">Watch List</a>
+        <a data-route href="/alerts">Alerts</a>
+        <a data-route href="/returns">Returns and Refunds</a>
         <a href="https://www.fr8star.com/" target="_blank" rel="noopener">FR8Star Shipping</a>
         <a href="https://www.gocurrency.com/" target="_blank" rel="noopener">Currency Financing</a>
-        <a data-route href="/truckpaper/advertising">Advertising</a>
+        <a data-route href="/advertising">Advertising</a>
         <a href="mailto:c9919145@gmail.com">Contact Us</a>
-        <a data-route href="/truckpaper/subscriptions">Subscriptions</a>
+        <a data-route href="/subscriptions">Subscriptions</a>
       </div>
     </div>
     <div class="footer-main">
       <div class="footer-links">
-        <a data-route href="/truckpaper/returns">Returns and Refunds</a>
+        <a data-route href="/returns">Returns and Refunds</a>
         <a href="https://www.fr8star.com/" target="_blank" rel="noopener">FR8Star Shipping</a>
         <a href="https://www.gocurrency.com/" target="_blank" rel="noopener">Currency Financing</a>
-        <a data-route href="/truckpaper/advertising">Advertising</a>
+        <a data-route href="/advertising">Advertising</a>
         <a href="mailto:c9919145@gmail.com">Contact Us</a>
-        <a data-route href="/truckpaper/subscriptions">Subscriptions</a>
+        <a data-route href="/subscriptions">Subscriptions</a>
       </div>
       <div class="socials">
         <a href="https://www.facebook.com/search/top?q=TruckPaper" target="_blank" rel="noopener" aria-label="Facebook">f</a>
@@ -380,29 +380,29 @@
       </div>
     </div>
     <div class="sister-sites">
-      <a data-route href="/truckpaper/brands">Utility Trailers For Sale</a>
-      <a data-route href="/truckpaper/brands">Vocational Trucks For Sale</a>
-      <a data-route href="/truckpaper/brands">Motorsports and Powersports For Sale</a>
-      <a data-route href="/truckpaper/brands">Campers, Travel Trailers, and RVs For Sale</a>
-      <a data-route href="/truckpaper/brands">Power Systems and Generators For Sale</a>
-      <a data-route href="/truckpaper/brands">Farm Equipment Online Auctions</a>
+      <a data-route href="/brands">Utility Trailers For Sale</a>
+      <a data-route href="/brands">Vocational Trucks For Sale</a>
+      <a data-route href="/brands">Motorsports and Powersports For Sale</a>
+      <a data-route href="/brands">Campers, Travel Trailers, and RVs For Sale</a>
+      <a data-route href="/brands">Power Systems and Generators For Sale</a>
+      <a data-route href="/brands">Farm Equipment Online Auctions</a>
     </div>
     <div class="legal-bar">
-      <a data-route href="/truckpaper/legal#notices">Legal Notices &amp; Accessibility</a>
-      <a data-route href="/truckpaper/legal#privacy">Privacy Policy</a>
-      <a data-route href="/truckpaper/legal#ca-privacy">CA Privacy Policy and Rights</a>
-      <a data-route href="/truckpaper/legal#choices"><img src="assets/privacy.png" alt="" /> Your Privacy Choices</a>
-      <a data-route href="/truckpaper/sitemap">Site Map</a>
+      <a data-route href="/legal#notices">Legal Notices &amp; Accessibility</a>
+      <a data-route href="/legal#privacy">Privacy Policy</a>
+      <a data-route href="/legal#ca-privacy">CA Privacy Policy and Rights</a>
+      <a data-route href="/legal#choices"><img src="assets/privacy.png" alt="" /> Your Privacy Choices</a>
+      <a data-route href="/sitemap">Site Map</a>
       <div class="copy">Copyright © 2026 Sandhills Global | Reproduction without expressed written consent is forbidden.</div>
     </div>
   </footer>
 
   <div class="mobile-tools" role="navigation" aria-label="Quick tools">
-    <a data-route href="/truckpaper/values"><img src="assets/vip.png" alt="" style="height:16px;margin:0 auto 2px" />Values</a>
-    <a data-route href="/truckpaper/values">Hi/Lo/Avg</a>
+    <a data-route href="/values"><img src="assets/vip.png" alt="" style="height:16px;margin:0 auto 2px" />Values</a>
+    <a data-route href="/values">Hi/Lo/Avg</a>
     <button type="button" id="mobile-filter">Filter</button>
-    <a data-route href="/truckpaper/watch-list">Watch List</a>
-    <a data-route href="/truckpaper/alerts">Alerts</a>
+    <a data-route href="/watch-list">Watch List</a>
+    <a data-route href="/alerts">Alerts</a>
   </div>
 
   <script>
