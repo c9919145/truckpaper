@@ -31,7 +31,11 @@
   }
 
   function req(method, path, body, isForm) {
-    var opts = { method: method, credentials: "same-origin", headers: { Accept: "application/json" } };
+    var opts = {
+      method: method,
+      credentials: window.TP_API && window.TP_API.crossOrigin ? "include" : "same-origin",
+      headers: { Accept: "application/json" },
+    };
     if (isForm) {
       opts.body = body;
     } else if (body !== undefined) {

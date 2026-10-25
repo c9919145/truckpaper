@@ -17,10 +17,24 @@
 
   var LS_EMAIL = "tp.remembered.email";
 
-  function postJSON(url, body) {
-    return fetch(url, {
+  /* Resolve an /api path through the shared adapter so a front end on GitHub
+   * Pages can reach a PHP API hosted on another origin. */
+  function apiUrl(path) {
+    if (window.TP_API && typeof window.TP_API.url === "function") {
+      return window.TP_API.url(path);
+    }
+    return (window.TP_BASE || "") + "/api" + path;
+  }
+
+  function credentials() {
+    return window.TP_API && window.TP_API.crossOrigin ? "include" : "same-origin";
+  }
+
+  function postJSON(path, body) {
+    return fetch(apiUrl(path), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      credentials: credentials(),
       body: JSON.stringify(body),
     }).then(function (res) {
       return res.text().then(function (text) {
@@ -54,7 +68,7 @@
     if (!creds || !creds.email || !creds.password) {
       return Promise.reject(new Error("Please enter your email and password."));
     }
-    return postJSON("/api/auth/login", {
+    return postJSON("/auth/login", {
       email: String(creds.email).trim(),
       password: String(creds.password),
       remember: !!creds.remember,
@@ -69,7 +83,7 @@
     if (!details || !details.email || !details.password) {
       return Promise.reject(new Error("Please complete every field above."));
     }
-    return postJSON("/api/auth/register", {
+    return postJSON("/auth/register", {
       firstName: String(details.firstName || "").trim(),
       lastName: String(details.lastName || "").trim(),
       email: String(details.email).trim(),
@@ -83,7 +97,7 @@
 
   function requestPasswordReset(email) {
     if (!email) return Promise.reject(new Error("Please enter your email address."));
-    return postJSON("/api/auth/forgot-password", {
+    return postJSON("/auth/forgot-password", {
       email: String(email).trim(),
     }).then(function (res) {
       return fromResponse(res, function () {
@@ -140,7 +154,7 @@
   }
 
   function logout() {
-    return postJSON("/api/auth/logout", {}).then(function (res) {
+    return postJSON("/auth/logout", {}).then(function (res) {
       if (res.ok) return Promise.resolve();
       return Promise.reject(new Error("We couldn't sign you out. Please try again."));
     });
@@ -149,7 +163,7 @@
   function resetPassword(token, password) {
     if (!token) return Promise.reject(new Error("This reset link is missing its token."));
     if (!password) return Promise.reject(new Error("Please enter a new password."));
-    return postJSON("/api/auth/reset-password", {
+    return postJSON("/auth/reset-password", {
       token: String(token),
       password: String(password),
     }).then(function (res) {

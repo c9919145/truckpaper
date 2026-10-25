@@ -42,6 +42,22 @@
   };
   window.TP_API = api;
 
+  /* True when the API is on another origin (the GitHub Pages front end talking
+   * to a separately hosted PHP API). Same-origin deployments stay false. */
+  api.crossOrigin =
+    /^https?:\/\//i.test(base) && base.indexOf(window.location.origin + "/") !== 0 &&
+    base !== window.location.origin;
+
+  /* Absolute API URL for a path such as "/auth/login". Every fetch in the
+   * front end goes through this so a split deployment needs one setting. */
+  api.url = function (path) {
+    return base + path;
+  };
+
+  /* Cookies must be sent explicitly when the API is cross-origin; on a
+   * same-origin deployment "same-origin" remains the correct default. */
+  api.credentials = api.crossOrigin ? "include" : "same-origin";
+
   var resolveReady;
   api.ready = function () {
     if (api.settled) return Promise.resolve(api);
@@ -61,7 +77,7 @@
     return fetch(base + path, {
       method: "GET",
       headers: { Accept: "application/json" },
-      credentials: "same-origin",
+      credentials: api.credentials,
       signal: ctrl ? ctrl.signal : undefined,
     }).then(function (res) {
       clearTimeout(timer);
